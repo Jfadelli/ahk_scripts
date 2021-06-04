@@ -19,32 +19,12 @@ app4 :=
         ; WinMove, "ahk_id %asanaWinId%",, -01930, 0, 800, 1080
         ; Sleep, 200
 
-
-    DetectHiddenWindows, Off
-    Process, Exist, slack.exe
-    slackPid = %ErrorLevel%
-    IfWinNotExist, ahk_pid %slackPid%
-    {
-        TrayIcon_Button("slack.exe")
-    }
-    Else
-    {
-        IfWinActive, ahk_pid %slackPid%
-        {
-            WinClose, ahk_pid %slackPid%
-        }
-        Else
-        {
-            WinActivate, ahk_pid %slackPid%
-        }
-    }
-    return
-        ; Run, C:\Users\Jfade\AppData\Local\slack\Update.exe --processStart "slack.exe", , Normal
-        ; Sleep, 500
-        ; IfWinExist, Slack, "Slack"
-        ;     WinActivate
-        ;     winId := WinExist("A")
-        ; WinMove, "ahk_id %winId%",,0,0
+        RunWait, slack.exe, C:\Users\Jason PBE\AppData\Local\slack
+        Sleep, 500
+        IfWinExist, Slack, "Slack"
+            WinActivate
+            winId := WinExist("A")
+        WinMove, "ahk_id %winId%",,0,0
 
         ; Run chrome.exe "https://calendar.google.com/calendar/u/0/r/day" " --new-window "
         ; Sleep, 500
