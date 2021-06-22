@@ -18,21 +18,21 @@ F1::
 F2::
     {
         Send {Click}
-        Sleep 10
+        Sleep 100
         Send {Ctrl down} a {Ctrl up} {Del} 
-        Sleep 10
+        Sleep 100
         Send {Tab}
-        Sleep 50
+        Sleep 150
         Send {Ctrl down} v {Ctrl up}
         MouseGetPos x, y
         MouseMove 0, 160, ,R
         Sleep 50
         Send {Click}
-        MouseMove %x%,%y%
+        ; MouseMove %x%,%y%
         return
     }
 
-;F3 does all of F2 command, but doesn't mouse down, and select any items automatically.
+;F3 does all of F2 command, but doesn't mouse down or select any items automatically.
 F3::
     {
         Send {Click}
@@ -45,6 +45,16 @@ F3::
         return
     }
 
+; Deletes all entries 
+F4::
+    {
+        Send {Click}
+        Sleep 20
+        Send {Ctrl down} a {Ctrl up} 
+        Sleep 10
+        Send {Del} 
+        Return
+    }
 
 ; F2::
 ;     {
@@ -58,3 +68,14 @@ F3::
 ;         MouseMove %x%,%y%
 ;         return
 ;     }
+F5::
+    {
+        SendRaw <br />
+        Sleep 100
+        Loop, 6{
+            Send {Right}
+        }
+        Sleep 50
+        Send {esc} {enter}
+        return
+    }

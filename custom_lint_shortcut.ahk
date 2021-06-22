@@ -1,4 +1,6 @@
 SendMode Input
+
+;Move {/if} to line above
 !s:: 
     {
         Send {Ctrl down} {Del} {Ctrl up}
