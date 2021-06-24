@@ -338,10 +338,10 @@ F3::
                     While (count < (currLine - 20) // 3){
                         if (count < 1) {
                             Send {WheelDown}
-                            Sleep 50
+                            Sleep 20
                         }
                         Send {WheelDown}
-                        sleep 50
+                        sleep 10
                         count ++ 
                     }
                 }

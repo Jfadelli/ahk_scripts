@@ -14,11 +14,11 @@ In order to function properly, the system will need to be configured as follows:
 
 ### Key Map
 
-1. Ctrl+Shift+F1 - Maniupluates an excel doc, and outputs a .txt file
+1. Ctrl+Shift+F1 - Manipulates an excel doc, and outputs a .txt file
 
 2. Ctrl+Shift+F2 - Handles opening qualtrics, creating the folder, creating the survey, manipulating and uploading the data.
 
-3. F3 - Toggles Mousewheel behavior for mapping fields.
+3. F3 - Toggles Mouse Wheel behavior for mapping fields.
 
 4. F5 - Triggers user input current line number.
 
