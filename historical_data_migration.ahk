@@ -273,10 +273,10 @@ SetWinDelay, -1
         Sleep 2000
         MouseMove, 449, 196, 0 ; Tools
         Send {Click}
-        Sleep 250
+        Sleep 500
         MouseMove, 483, 528, 0 ; Import/Export 
         Send {Click}
-        Sleep 20
+        Sleep 250
         MouseMove, 790, 520, 2 ; Slide to the right	
         Sleep 20
         MouseMove, 790, 576, 2 ; Drop Down to Import
@@ -335,7 +335,8 @@ F3::
                     MouseMove, currX+200, currY, 0
                     sleep 100
                     count = 0
-                    While (count < (currLine - 20) // 3){
+                    While (count < (currLine / 3)){
+                        ToolTip, (%currLine%)
                         if (count < 1) {
                             Send {WheelDown}
                             Sleep 20
@@ -345,8 +346,9 @@ F3::
                         count ++ 
                     }
                 }
+                currLine ++
             }
-            currLine ++
+            
         }
         return
     }
