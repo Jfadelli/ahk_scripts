@@ -2,6 +2,13 @@
 SendMode Input
 SetWorkingDir, %A_ScriptDir%
 
+FINDMOUSE()
+{
+    MouseGetPos, x, y
+    MsgBox, %x% %y%
+    return
+}
+
 NL(x)
 {
     while(count < x)
@@ -122,7 +129,7 @@ PAGE2()
 PAGE3()
 {
     NL(1)
-    SEL(1,50)
+    SEL(0,50)
     NL(7)
 
     SEL(1,50)
@@ -151,7 +158,7 @@ PAGE3()
 
     SEL(0, 100) ; arm rests
     NL(6)
-    
+
     SEL(0, 100) ; foot support
     NL(6)
 
@@ -176,8 +183,38 @@ PAGE3()
     SEL(0, 100) ; typing force
     NL(4)
 
+    SEL(0, 100) ; Mouse currently used
+    NL(1)
+
+    SEL(0, 100) ; Mouse Placement
+    NL(6)
+
+    SEL(0, 100) ; Mouse Grip / Hand Tension
+    NL(4)
+
     SEL(0, 100)
 
+    NEXTPAGE()
+}
+
+PAGE4()
+{
+    NL(1)
+    SEL1(0,4,50)
+    SEL1(0,8,50)
+    SEL1(0,8,50)
+    SendRaw, "Monitor Brand and Size"
+    NL(1)
+    SELALL(8, 100)
+    SEL1(0,6, 100)
+    SEL1(0,6, 100)
+    SEL1(0,6, 100)
+    SEL1(0,7, 100)
+    SEL1(0,7, 100)
+    SEL1(0,7, 100)
+    SEL1(0,8, 100)
+    SEL1(0,7, 100)
+    NEXTPAGE()
 }
 
 F1:: 
@@ -187,18 +224,55 @@ F1::
 
     {
         PAGE1()
-        PAGE2()
+        ; PAGE2()
+        ; PAGE3()
 
         return
     }
 
-F2::
+    SEL1(choice, total, wait)
     {
-        MouseGetPos, x, y
-        MsgBox, %x% %y%
+        curr = 0
+        if(choice==0)
+        {
+            send {Space}
+            sleep %wait%
+            while (count < total)
+            {
+                send {Tab}
+                sleep %wait%
+                count ++
+            }
+            return
+        }
+        while(count<choice)
+        {
+            send {Tab}
+            sleep %wait%
+            count++
+            %curr% ++
+        }
+        send {Space}
+        sleep %wait%
+        while(%curr% < total) {
+            send {Tab}
+            sleep %wait%
+            %curr%++
+        }
         return
     }
-F3::
-{
-    PAGE3()
-}
+
+    SELALL(total, wait)
+    {
+        while(count < total)
+        {
+            send {space}
+            sleep (%wait%/2)
+            send {tab}
+            sleep %wait%
+            count++
+        }
+    }
+
+    F2::PAGE4()
+    F3::FINDMOUSE()
