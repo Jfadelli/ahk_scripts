@@ -222,11 +222,15 @@ SetWinDelay, -1
         ; ; Create Folder For Work
         if(FirstOfKind = "yes")
         {
+            While (count < 10) {
+                send, {WheelUp}
+                count ++
+            }
             MouseMove, 83, 176, 0 
             Send {Click}
             Sleep 1500
             SendRaw, %FolderName%
-            Sleep 20
+            Sleep 100
             Send, {Enter}
             Sleep 500
             SendInput {PgUp} 
