@@ -15,11 +15,8 @@ In order to function properly, the system will need to be configured as follows:
 ### Key Map
 
 1. Ctrl+Shift+F1 - Manipulates an excel doc, and outputs a .txt file
-
 2. Ctrl+Shift+F2 - Handles opening qualtrics, creating the folder, creating the survey, manipulating and uploading the data.
-
 3. F3 - Toggles Mouse Wheel behavior for mapping fields.
-
 4. F5 - Triggers user input current line number.
 
 ### Instructions 
@@ -42,3 +39,11 @@ In order to function properly, the system will need to be configured as follows:
 ### CAUTIONS
 1. You will not be able to do anything with your computer during while the script is running. The script relies on precise mouse and keyboard inputs, and must not be disturbed.
 2. This scipt has no window/program detection, and will complete without interupts. Be sure you are in the right window before running anything.
+
+### Change Log
+1. update 7.30.21
+    1. Updated scroll feature to be more consistant and keep most likely selections for range in middle of screen.
+    2. Updated L / R mouse behaviour when mapping to move mouse left after drop down selection is made
+    3. Implemented new feature to scroll slowly scrolling down left hand fields.
+    4. Added feature to increment or decrement currLine with Num + and Num -.
+    5. Added hotkey f4 to toggle L/R flag without sending a click. I.e. if the cursor gets out of sync and is behaving backwards.

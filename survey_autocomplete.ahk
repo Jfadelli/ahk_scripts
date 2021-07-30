@@ -2,6 +2,8 @@
 SendMode Input
 SetWorkingDir, %A_ScriptDir%
 
+ConnectionSpeedDwell := 100
+
 FINDMOUSE()
 {
     MouseGetPos, x, y
@@ -85,7 +87,7 @@ NEXTPAGE()
     MouseMove, 959, 958, 0
     sleep 200
     Send {Click}
-    sleep 1500
+    sleep 3000
 }
 
 PAGE1()
@@ -161,7 +163,10 @@ PAGE4()
     SEL(0,8,50)
     SendRaw, "Monitor Brand and Size"
     NL(1,50)
-    SELALL(8, 25)
+    SELALL(7, 25) ; how is your laptop being used
+    sleep, 3000
+    SEL(0,1,25)
+    sleep, 2000
     SEL(0,6, 25)
     SEL(0,6, 25)
     SEL(0,6, 25)
@@ -178,6 +183,7 @@ PAGE5()
     NL(1,50)
     SEL(0,8,50)
     SEL(0,1,500)
+    sleep, 1500
     DDS(1,10)
     NL(2, 50)
     DDS(1,10)
@@ -239,6 +245,8 @@ PAGE8()
     DDS(1,10)
     NL(1, 10)
     DDS(1, 10)
+    NL(1,10)
+    DDS(1,10)
     NEXTPAGE()
 
 }

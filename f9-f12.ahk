@@ -37,3 +37,15 @@ return
 run, chrome.exe
 return 
 
+; In Development
+
+
+; ^!F12:: ; Enable Side Scroll
+; 	{
+; 		SideScroll != SideScroll
+; 		While(SideScroll) 
+; 			{
+; 			+WheelUp::WheelLeft
+; 			+WheelDown::WheelRight
+; 			}
+; 	}

@@ -212,24 +212,28 @@ SetWinDelay, -1
         ; InputBox, QualtricsUserName , QualtricsUserName, "Please enter your Qualtrics Username", , , , , , , , Default
         ; InputBox, QualtricsPass , QualtricsPass, "Please enter your Qualtrics Password", HIDE, , , , , , , 
         InputBox, FolderName, Folder Name, "Please Enter the Project Folder Name for Qualtrics"
+        InputBox, FirstOfKind, First Of Kind, "Is this the first document of it's year? input yes or leave blank for no"
         InputBox, FormName, Form Name, "Type the name of the Form for Qualtrics"
         Run, Chrome.exe "https://pbergo.az1.qualtrics.com/Q/MyProjectsSection"
         QualtricsWindow := WinActive("A")
         sleep 7000
         ; MouseGetPos, XOrigin, YOrigin, QualtricsWinID, ,
 
-        ; Create Folder For Work
-        MouseMove, 83, 176, 0 
-        Send {Click}
-        Sleep 1500
-        SendRaw, %FolderName%
-        Sleep 20
-        Send, {Enter}
-        Sleep 500
-        SendInput {PgUp} 
-        Sleep 250
-        SendInput {PgUp}
-        Sleep 250
+        ; ; Create Folder For Work
+        if(FirstOfKind = "yes")
+        {
+            MouseMove, 83, 176, 0 
+            Send {Click}
+            Sleep 1500
+            SendRaw, %FolderName%
+            Sleep 20
+            Send, {Enter}
+            Sleep 500
+            SendInput {PgUp} 
+            Sleep 250
+            SendInput {PgUp}
+            Sleep 250
+        }
 
         ; Create Survey
         MouseMove, 1800, 175, 0
@@ -270,7 +274,7 @@ SetWinDelay, -1
         Sleep 250
         MouseMove, 1377, 677, 0 ; Are You Sure
         Send {Click}
-        Sleep 2000
+        Sleep 3500
         MouseMove, 449, 196, 0 ; Tools
         Send {Click}
         Sleep 500
@@ -301,15 +305,12 @@ SetWinDelay, -1
         Sleep 250
         MsgBox, , Please Select the File, "Please Press OK AFTER you have selected the file"
         MouseMove, 1135, 689, 0 ; Upload Button
+        Send {Click}
 
         Return
     }
 
     runFlag = 0
-F5::
-    {
-        InputBox, currLine, Current Line Input, "Please enter the current line you are working on"
-    }
 
 F3::
     {
@@ -322,21 +323,122 @@ F3::
 
     LRTracker = 0
 
+F4::
+    {
+        LRTracker := not LRTracker
+        return
+    }
+NumpadAdd::
+    {
+        currLine ++
+        ToolTip, %currLine%, 126, 556
+        return
+    }
+NumpadSub::
+    {
+        currLine --
+        ToolTip, %currLine%, 126, 556
+        return
+    }
+
 ~LButton::
     {
         if(runFlag) {
-
             Click Up
             LRTracker := not LRTracker
             sleep 100
             if(LRTracker) {
-                if(currLine > 20){
-                    MouseGetPos, currX, currY,,,
-                    MouseMove, currX+200, currY, 0
-                    sleep 100
+                ; if(currLine > 20){
+                MouseGetPos, currX, currY,,,
+                MouseMove, currX+350, currY, 0
+                sleep 100
+                count = 0
+
+                if (currLine >= 15 and currLine < 25) {
                     count = 0
+                    While (count < (currLine / 3)-5){
+                        ToolTip, %currLine%, 126, currY
+
+                        if (count < 1) {
+                            Send {WheelDown}
+                            Sleep 20
+                        }
+                        Send {WheelDown}
+                        sleep 10
+                        count ++ 
+                    }
+                }
+                else if ((currLine >= 25 and currLine < 40)) {
+                    count = 0
+                    While (count < (currLine / 3)-4){
+                        ToolTip, %currLine%, 126, currY
+
+                        if (count < 1) {
+                            Send {WheelDown}
+                            Sleep 20
+                        }
+                        Send {WheelDown}
+                        sleep 10
+                        count ++ 
+                    }
+                }
+                else if (currLine >= 40 and currLine < 50) {
+                    count = 0
+                    While (count < (currLine / 3)-3){
+                        ToolTip, %currLine%, 126, currY
+
+                        if (count < 1) {
+                            Send {WheelDown}
+                            Sleep 20
+                        }
+                        Send {WheelDown}
+                        sleep 10
+                        count ++ 
+                    }
+                }
+                else if (currLine >= 50 and currLine < 60 ) {
+                    While (count < (currLine / 3)-3){
+                        ToolTip, %currLine%, 126, currY
+
+                        if (count < 1) {
+                            Send {WheelDown}
+                            Sleep 20
+                        }
+                        Send {WheelDown}
+                        sleep 10
+                        count ++ 
+                    }
+                }
+                else if (currLine >= 60 and currLine < 70){
+                    While (count < (currLine / 3)-2){
+                        ToolTip, %currLine%, 126, currY
+
+                        if (count < 1) {
+                            Send {WheelDown}
+                            Sleep 20
+                        }
+                        Send {WheelDown}
+                        sleep 10
+                        count ++ 
+                    }
+                }
+                else if (currLine >= 70 and currLine < 80) {
                     While (count < (currLine / 3)){
-                        ToolTip, (%currLine%)
+                        ToolTip, %currLine%, 126, currY
+
+                        if (count < 1) {
+                            Send {WheelDown}
+                            Sleep 20
+                        }
+                        Send {WheelDown}
+                        sleep 10
+                        count ++ 
+                    }
+                }
+                else if (currLine >= 80) {
+                    While (count < (currLine / 3)+1){
+                        ToolTip, %currLine%, 126, currY
+
                         if (count < 1) {
                             Send {WheelDown}
                             Sleep 20
@@ -347,13 +449,25 @@ F3::
                     }
                 }
                 currLine ++
+            } else {
+                if ( mod(currLine, 2) = 0 ) {
+                    MouseMove, currX, currY-10, 0
+                    sleep 100
+                    Send {WheelDown}
+                    sleep 10
+                }
+                else {
+                    MouseMove, currX, currY+55, 0
+                    sleep 100
+                }
+
             }
-            
+
         }
         return
     }
 
-; Debugging/testing functions
+    ; Debugging/testing functions
 ; F11:: 
 ;     {
 ;         MouseGetPos, TestX, TestY, TestID
@@ -361,7 +475,7 @@ F3::
 ;         Return
 ;     }
 
-; F10::
-;     {
-;         MsgBox, Test Box, %currLine%
-;     }
+    ; F10::
+    ;     {
+    ;         MsgBox, Test Box, %currLine%
+    ;     }

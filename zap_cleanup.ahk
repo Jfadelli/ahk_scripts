@@ -70,12 +70,8 @@ F4::
 ;     }
 F5::
     {
-        SendRaw <br />
-        Sleep 100
-        Loop, 6{
-            Send {Right}
-        }
-        Sleep 50
-        Send {esc} {enter}
-        return
+        Send ^{Del}
+        Sleep, 5
+        Send {Space}
     }
+
