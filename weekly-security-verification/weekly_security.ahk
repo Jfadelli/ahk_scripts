@@ -28,7 +28,7 @@ sleep3 = 400
 sleep4 = 800
 ^!f10::
     {
-        run, python.exe remove-files.py
+        run, python.exe remove_files.py
         sleep, 3000
 
         ; run msinfo

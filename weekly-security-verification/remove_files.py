@@ -1,11 +1,15 @@
 import os
 import shutil
 
-#  RREMOVE THE FILES
-desktop = 'C:/Users/Jason PBE/desktop'
-documents = 'C:/Users/Jason PBE/documents'
-downloads = 'C:/Users/Jason PBE/downloads'
+with open('user_info.txt', 'r') as file:
+    user__account_name = file.read().replace('\n', '')
 
+#  Set Filename Variables
+desktop = 'C:/Users/'+user__account_name+'/desktop/tmp'
+documents = 'C:/Users/'+user__account_name+'/documents'
+downloads = 'C:/Users/'+user__account_name+'/downloads'
+
+#  REMOVE THE FILES
 try:
     for f in os.listdir(desktop):
         path = os.path.join(desktop, f)
@@ -35,12 +39,12 @@ try:
             os.remove(path)
 except Exception as e:
     print("An exception occured: ", e)
-print('files removed')
+print('program closing...')
 
 #  SHOW THE FOLDERS
-ShowDesktop = os.system('explorer "C:\\Users\Jason PBE\desktop"')
-ShowDownloads = os.system('explorer "C:\\Users\Jason PBE\Downloads"')
-ShowDocuments = os.system('explorer "C:\\Users\Jason PBE\Documents"')
+ShowDesktop = os.system('explorer "C:\\Users\\"'+user__account_name+'"\desktop"')
+ShowDownloads = os.system('explorer "C:\\Users\"'+user__account_name+'"\Downloads"')
+ShowDocuments = os.system('explorer "C:\\Users\"'+user__account_name+'"\Documents"')
 
 ShowDesktop
 ShowDownloads
