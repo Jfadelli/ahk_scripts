@@ -6,5 +6,3 @@ user_directory = input("Input directory path: ")
 file = open(file_name, "w")
 file.write(user_directory)
 file.close()
-
-
