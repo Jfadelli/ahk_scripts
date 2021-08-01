@@ -41,12 +41,12 @@ except Exception as e:
     print("An exception occured: ", e)
 print('program closing...')
 
-#  SHOW THE FOLDERS
+#  Create SHOW THE FOLDERS functions
 ShowDesktop = os.system('explorer "C:\\Users\\"'+user__account_name+'"\desktop"')
 ShowDownloads = os.system('explorer "C:\\Users\"'+user__account_name+'"\Downloads"')
 ShowDocuments = os.system('explorer "C:\\Users\"'+user__account_name+'"\Documents"')
 
+#  SHOW THE FOLDERS
 ShowDesktop
 ShowDownloads
 ShowDocuments
-
