@@ -5,7 +5,7 @@ with open('user_info.txt', 'r') as file:
     user__account_name = file.read().replace('\n', '')
 
 #  Set Filename Variables
-desktop = 'C:/Users/'+user__account_name+'/desktop/tmp'
+desktop = 'C:/Users/'+user__account_name+'/desktop'
 documents = 'C:/Users/'+user__account_name+'/documents'
 downloads = 'C:/Users/'+user__account_name+'/downloads'
 
