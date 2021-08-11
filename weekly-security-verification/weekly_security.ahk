@@ -1,3 +1,4 @@
+AccountName := "Jason PBE"
 app1 := [{"name":"msinfo32", "windowName":"System Information","x":-4,"y":0,"w":600,"h":250}]
 apps234 := [{"name":"Documents", "windowName":"My Documents","x":-4,"y":250,"w":600,"h":250},{"name":"Downloads", "windowName":"My Downloads","x":-4,"y":500,"w":600,"h":250},{"name":"Desktop", "windowName":"My Desktop","x":-4,"y":750,"w":600,"h":250}]
 apps56 := [{"name":"control update", "windowName":"Settings","x":600,"y":0,"w":600,"h":350},{"name":"C:\Program Files\Bitdefender\Bitdefender Security\seccenter.exe", "windowName":"Bit Defender Security Center","x":600,"y":350,"w":872,"h":640}]
@@ -74,12 +75,23 @@ QuickScan := [{"x":700,"y":450,"w":872,"h":640}]
         WinMove, "ahk_id %QuickScanWinID%",, quickScan[1].x, quickScan[1].y
         sleep 500
 
+        run, python security_questions.py
+
+        MsgBox, , Weekly Security AHK Script, When you have completed the security questions please press OK.
+
+        WinExist("user_responses - Notepad")
+        WinActivate
+        ResponsesWinID := WinExist("A")
+        WinMove, "ahk_id %ResponsesWinID%", , 1191, 4, 722, 293 
+
         MsgBox, , Weekly Security AHK Script, When the scan and all updates have been completed, please press OK
 
         ; Print Screen
         sleep 250
         Send {PrintScreen}
         Sleep 100
+
+        FileCreateDir, c:\users\Jason PBE\desktop\tmp
 
         ; Run Paint / Save Screenshot
         Send #r
@@ -95,9 +107,70 @@ QuickScan := [{"x":700,"y":450,"w":872,"h":640}]
         sleep 250
         send ^s
         sleep 250
-        sendRaw, % "Security Check " A_MMMM " " A_DD ", "A_YYYY
+        sendRaw, % "c:\users\" AccountName "\desktop\tmp\Security Check " A_MMMM " " A_DD ", "A_YYYY
+        send, {enter}
+        winClose "ahk_id %app7WinID%"
 
+        MsgBox,, Weekly Security AHK Script, Once you have saved your screenshot, press OK, to continue.
+
+        run, python.exe selenium_google_drive/drive.py
+
+        MsgBox,, Weekly Security AHK Script, Press OK when the Google Drive prompts you to upload a file.
+        WinActivate, Weekly Security AHK Script
+        SendRaw, % "c:\users\" AccountName "\desktop\tmp\Security Check " A_MMMM " " A_DD ", "A_YYYY
+        sleep, 100
+        Send {Enter}
+        sleep, 500
+        run, python.exe remove_files2.py
+
+        WinClose, "ahk_id %ResponseWinID%"
+        WinClose, Downloads
+        WinClose, Desktop
+        WinClose, System Information
+        WinClose, Settings
+        WinClose, Documents
+        WinClose, Bitdefender
+        WinClose, Notepad
+        sleep, 500
+        
+
+        ExitApp
         return
     }
 
-    Esc::ExitApp  ; Exit script with Escape key
+    #SingleInstance, Force
+    SendMode Input
+    SetWorkingDir, %A_ScriptDir%
+
+    ; Development Commands 
+^F4::
+    {
+        CoordMode, Mouse, screen
+        MouseGetPos, MouseX, MouseY,
+        MsgBox, X: %MouseX% `nY: %MouseY%
+        return
+    }
+
+^F3::
+    {
+        WinID := WinExist("A")
+        WinGetClass, thisClass
+        WinGetTitle, thisTitle
+        WinGetPos, WinX, WinY, WinWidth, WinHeight, "ahk_id %WinID%"
+        MsgBox, Coords: X: %WinX% Y: %WinY% `nDimensions: Width: %WinWidth% Height: %WinHeight% `nTitle: %thisTitle% 
+        return
+    }
+
+^F5::
+    {
+        WinClose, "ahk_id %ResponseWinID%"
+        WinClose, Downloads
+        WinClose, Desktop
+        WinClose, System Information
+        WinClose, Settings
+        WinClose, Documents
+        WinClose, Bitdefender
+        return
+    }
+
+Esc::ExitApp ; Exit script with Escape key

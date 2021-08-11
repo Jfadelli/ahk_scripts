@@ -294,7 +294,7 @@ SetWinDelay, -1
         MsgBox, , Please Select the File, "Please Press OK AFTER you have selected the file"
         MouseMove, 1151, 666, 0 ; Import
         Send {Click}
-        MsgBox, , "Waiting For Server", "Please Be Patient, This could take Several Seconds. Once the Import is Complete, click OK"
+        MsgBox, , "Waiting For Server", Please be patient, this could take up to several minutes. Once the import is complete, click OK
         MouseMove, 336, 148, 0 ; Data And Analysis Tab
         Send {Click}
         Sleep 6000
@@ -358,134 +358,136 @@ NumpadSub::
                 MouseMove, currX+350, currY, 0
                 sleep 100
                 count = 0
-                if (currLine < 15 ) {                    
+                if (currLine < 15 ) { 
+                    ToolTip, %currLine%, TTloc, currY
+                }
+
+                else if (currLine >= 15 and currLine < 25) {
+                    count = 0
+                    While (count < (currLine / 3)-5){
                         ToolTip, %currLine%, TTloc, currY
-                    }
 
-                    else if (currLine >= 15 and currLine < 25) {
-                        count = 0
-                        While (count < (currLine / 3)-5){
-                            ToolTip, %currLine%, TTloc, currY
-
-                            if (count < 1) {
-                                Send {WheelDown}
-                                Sleep 20
-                            }
+                        if (count < 1) {
                             Send {WheelDown}
-                            sleep 10
-                            count ++ 
+                            Sleep 20
                         }
-                    }
-                    else if ((currLine >= 25 and currLine < 40)) {
-                        count = 0
-                        While (count < (currLine / 3)-4){
-                            ToolTip, %currLine%, TTloc, currY
-
-                            if (count < 1) {
-                                Send {WheelDown}
-                                Sleep 20
-                            }
-                            Send {WheelDown}
-                            sleep 10
-                            count ++ 
-                        }
-                    }
-                    else if (currLine >= 40 and currLine < 50) {
-                        count = 0
-                        While (count < (currLine / 3)-3){
-                            ToolTip, %currLine%, TTloc, currY
-
-                            if (count < 1) {
-                                Send {WheelDown}
-                                Sleep 20
-                            }
-                            Send {WheelDown}
-                            sleep 10
-                            count ++ 
-                        }
-                    }
-                    else if (currLine >= 50 and currLine < 60 ) {
-                        While (count < (currLine / 3)-3){
-                            ToolTip, %currLine%, TTloc, currY
-
-                            if (count < 1) {
-                                Send {WheelDown}
-                                Sleep 20
-                            }
-                            Send {WheelDown}
-                            sleep 10
-                            count ++ 
-                        }
-                    }
-                    else if (currLine >= 60 and currLine < 70){
-                        While (count < (currLine / 3)-2){
-                            ToolTip, %currLine%, TTloc, currY
-
-                            if (count < 1) {
-                                Send {WheelDown}
-                                Sleep 20
-                            }
-                            Send {WheelDown}
-                            sleep 10
-                            count ++ 
-                        }
-                    }
-                    else if (currLine >= 70 and currLine < 80) {
-                        While (count < (currLine / 3)){
-                            ToolTip, %currLine%, TTloc, currY
-
-                            if (count < 1) {
-                                Send {WheelDown}
-                                Sleep 20
-                            }
-                            Send {WheelDown}
-                            sleep 10
-                            count ++ 
-                        }
-                    }
-                    else if (currLine >= 80) {
-                        While (count < (currLine / 3)+1){
-                            ToolTip, %currLine%, TTloc, currY
-
-                            if (count < 1) {
-                                Send {WheelDown}
-                                Sleep 20
-                            }
-                            Send {WheelDown}
-                            sleep 10
-                            count ++ 
-                        }
-                    }
-                    currLine ++
-                } else {
-                    if ( mod(currLine, 2) = 0 ) {
-                        ToolTip, %currLine%, TTloc, currY
-                        MouseMove, currX, currY-10, 0
-                        sleep 100
                         Send {WheelDown}
                         sleep 10
+                        count ++ 
                     }
-                    else {
-                        MouseMove, currX, currY+55, 0
+                }
+                else if ((currLine >= 25 and currLine < 40)) {
+                    count = 0
+                    While (count < (currLine / 3)-4){
                         ToolTip, %currLine%, TTloc, currY
-                        sleep 100
-                    }
 
+                        if (count < 1) {
+                            Send {WheelDown}
+                            Sleep 20
+                        }
+                        Send {WheelDown}
+                        sleep 10
+                        count ++ 
+                    }
+                }
+                else if (currLine >= 40 and currLine < 50) {
+                    count = 0
+                    While (count < (currLine / 3)-3){
+                        ToolTip, %currLine%, TTloc, currY
+
+                        if (count < 1) {
+                            Send {WheelDown}
+                            Sleep 20
+                        }
+                        Send {WheelDown}
+                        sleep 10
+                        count ++ 
+                    }
+                }
+                else if (currLine >= 50 and currLine < 60 ) {
+                    While (count < (currLine / 3)-3){
+                        ToolTip, %currLine%, TTloc, currY
+
+                        if (count < 1) {
+                            Send {WheelDown}
+                            Sleep 20
+                        }
+                        Send {WheelDown}
+                        sleep 10
+                        count ++ 
+                    }
+                }
+                else if (currLine >= 60 and currLine < 70){
+                    While (count < (currLine / 3)-2){
+                        ToolTip, %currLine%, TTloc, currY
+
+                        if (count < 1) {
+                            Send {WheelDown}
+                            Sleep 20
+                        }
+                        Send {WheelDown}
+                        sleep 10
+                        count ++ 
+                    }
+                }
+                else if (currLine >= 70 and currLine < 80) {
+                    While (count < (currLine / 3)){
+                        ToolTip, %currLine%, TTloc, currY
+
+                        if (count < 1) {
+                            Send {WheelDown}
+                            Sleep 20
+                        }
+                        Send {WheelDown}
+                        sleep 10
+                        count ++ 
+                    }
+                }
+                else if (currLine >= 80) {
+                    While (count < (currLine / 3)+1){
+                        ToolTip, %currLine%, TTloc, currY
+
+                        if (count < 1) {
+                            Send {WheelDown}
+                            Sleep 20
+                        }
+                        Send {WheelDown}
+                        sleep 10
+                        count ++ 
+                    }
+                }
+                currLine ++
+            } else {
+                if ( mod(currLine, 2) = 0 ) {
+                    ToolTip, %currLine%, TTloc, currY
+                    MouseMove, currX, currY-10, 0
+                    sleep 100
+                    Send {WheelDown}
+                    sleep 10
+                }
+                else {
+                    MouseMove, currX, currY+55, 0
+                    ToolTip, %currLine%, TTloc, currY
+                    sleep 100
                 }
 
             }
-            return
+
         }
+        return
+    }
 
-        ; Debugging/testing functions
-        F11:: 
-            {
-                MouseGetPos, TestX, TestY, TestID
-                MsgBox, , MouseLocation, "the mouse is at "%TestX%" "%Testy%". In Window "%TestID%, 
-                Return
-            }
+; Esc::ExitApp ; Exit script with Escape key
 
-        ; F10::
-        ;     {
-        ;         MsgBox, Test Box, %currLine%
-        ;     }
+; Debugging/testing functions
+F11:: 
+    {
+        MouseGetPos, TestX, TestY, TestID
+        MsgBox, , MouseLocation, "the mouse is at "%TestX%" "%Testy%". In Window "%TestID%, 
+        Return
+    }
+
+    ; F10::
+    ;     {
+    ;         MsgBox, Test Box, %currLine%
+    ;     }

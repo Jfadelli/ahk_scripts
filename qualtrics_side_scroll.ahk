@@ -1,4 +1,8 @@
 
-+WheelDown::WheelRight
++WheelDown::
+	{
+		WheelRight
+		return
+	}
 +WheelUp::WheelLeft 
 

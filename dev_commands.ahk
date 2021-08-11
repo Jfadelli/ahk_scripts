@@ -3,14 +3,15 @@ SendMode Input
 SetWorkingDir, %A_ScriptDir%
 
     ; Development Commands 
-    F1::
+    ^F4::
         {
             CoordMode, Mouse, screen
             MouseGetPos, MouseX, MouseY,
             MsgBox, %MouseX% %MouseY%
+        
         }
 
-    F2::
+    ^F3::
         {
             ; IfWinExist, Google Chrome, "Home - Asana"
             WinID := WinExist("A")
